@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Stats } from '../../types.ts';
-import { statsAPI } from '../../api.ts';
+import { Stats } from '../../hooks/types';
+import { statsAPI } from '../../services/api';
 
 interface StatsState {
   stats: Stats | null;
@@ -20,8 +20,8 @@ export const fetchStats = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await statsAPI.get();
-      // Backend returns stats object directly
-      return response.data;
+      // Backend returns stats object in data.data structure
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Failed to fetch stats');
     }

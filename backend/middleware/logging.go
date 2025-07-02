@@ -1,11 +1,49 @@
 package middleware
 
 import (
+	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
+
+// SetupLogger configures and returns a structured logger
+func SetupLogger() *logrus.Logger {
+	logger := logrus.New()
+
+	// Set log level based on environment
+	logLevel := os.Getenv("LOG_LEVEL")
+	switch logLevel {
+	case "debug":
+		logger.SetLevel(logrus.DebugLevel)
+	case "info":
+		logger.SetLevel(logrus.InfoLevel)
+	case "warn":
+		logger.SetLevel(logrus.WarnLevel)
+	case "error":
+		logger.SetLevel(logrus.ErrorLevel)
+	default:
+		logger.SetLevel(logrus.InfoLevel)
+	}
+
+	// Set formatter
+	if os.Getenv("LOG_FORMAT") == "json" {
+		logger.SetFormatter(&logrus.JSONFormatter{
+			TimestampFormat: "2006-01-02T15:04:05.000Z07:00",
+		})
+	} else {
+		logger.SetFormatter(&logrus.TextFormatter{
+			FullTimestamp:   true,
+			TimestampFormat: "2006-01-02T15:04:05.000Z07:00",
+		})
+	}
+
+	// Set output
+	logger.SetOutput(os.Stdout)
+
+	return logger
+}
 
 // LoggingMiddleware creates a gin middleware for logging requests
 func LoggingMiddleware(logger *logrus.Logger) gin.HandlerFunc {

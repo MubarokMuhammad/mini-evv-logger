@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Schedule } from '../types';
-import { scheduleAPI } from '../api';
+import { Schedule } from '../hooks/types';
+import { scheduleAPI } from '../services/api';
 
 const ScheduleDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
-import { fetchSchedules, startVisit, endVisit } from '../store/slices/scheduleSlice.ts';
-import { fetchStats } from '../store/slices/statsSlice.ts';
-import { setTimer, addNotification } from '../store/slices/uiSlice.ts';
-import { Schedule } from '../models/Schedule.ts';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchSchedules, startVisit, endVisit } from '../store/slices/scheduleSlice';
+import { fetchStats } from '../store/slices/statsSlice';
+import { setTimer, addNotification } from '../store/slices/uiSlice';
+import { Schedule } from '../models/Schedule';
 
 declare global {
   namespace NodeJS {

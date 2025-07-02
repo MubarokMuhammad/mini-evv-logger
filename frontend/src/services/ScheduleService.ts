@@ -1,6 +1,6 @@
-import { scheduleAPI } from '../api.ts';
-import { Schedule, Location } from '../models/Schedule.ts';
-import { getCurrentLocation } from '../utils/geolocation.ts';
+import { scheduleAPI } from './api';
+import { Schedule, Location } from '../models/Schedule';
+import { getCurrentLocation } from '../utils/geolocation';
 
 export class ScheduleService {
   static async getAllSchedules(): Promise<Schedule[]> {
@@ -79,34 +79,32 @@ export class ScheduleService {
   }
 
   static sortSchedules(schedules: Schedule[], sortBy: {
-    field: 'date' | 'startTime' | 'clientName' | 'status';
+    field: 'date' | 'clientName' | 'status' | 'startTime';
     direction: 'asc' | 'desc';
   }): Schedule[] {
-    return [...schedules].sort((a, b) => {
-      // For date sorting, always include time as secondary sort to maintain consistency
-      if (sortBy.field === 'date') {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        
-        if (dateA.getTime() !== dateB.getTime()) {
-          const dateComparison = dateA.getTime() - dateB.getTime();
-          return sortBy.direction === 'asc' ? dateComparison : -dateComparison;
-        }
-        
-        // If dates are the same, sort by start time
-        const timeComparison = a.startTime.localeCompare(b.startTime);
-        return sortBy.direction === 'asc' ? timeComparison : -timeComparison;
-      }
+    return schedules.sort((a: Schedule, b: Schedule) => {
+      let aValue: any;
+      let bValue: any;
       
-      // For other fields, use original logic
-      let aValue = a[sortBy.field];
-      let bValue = b[sortBy.field];
-      
-      if (typeof aValue === 'string') {
-        aValue = aValue.toLowerCase();
-      }
-      if (typeof bValue === 'string') {
-        bValue = bValue.toLowerCase();
+      switch (sortBy.field) {
+        case 'date':
+          aValue = new Date(a.date).getTime();
+          bValue = new Date(b.date).getTime();
+          break;
+        case 'clientName':
+          aValue = a.clientName.toLowerCase();
+          bValue = b.clientName.toLowerCase();
+          break;
+        case 'status':
+          aValue = a.status;
+          bValue = b.status;
+          break;
+        case 'startTime':
+          aValue = a.startTime;
+          bValue = b.startTime;
+          break;
+        default:
+          return 0;
       }
       
       if (sortBy.direction === 'asc') {

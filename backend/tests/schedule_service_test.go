@@ -21,7 +21,7 @@ func TestScheduleService_GetAllSchedules(t *testing.T) {
 	
 	assert.NoError(t, err)
 	assert.NotEmpty(t, schedules)
-	assert.Len(t, schedules, 3) // We initialize with 3 sample schedules
+	assert.Len(t, schedules, 10) // We initialize with 10 sample schedules
 }
 
 func TestScheduleService_GetScheduleByID(t *testing.T) {
@@ -37,7 +37,7 @@ func TestScheduleService_GetScheduleByID(t *testing.T) {
 		assert.NoError(t, err)
 		assert.NotNil(t, schedule)
 		assert.Equal(t, "1", schedule.ID)
-		assert.Equal(t, "John Doe", schedule.ClientName)
+		assert.Equal(t, "Melisa Adam", schedule.ClientName)
 	})
 	
 	t.Run("Invalid ID", func(t *testing.T) {
@@ -112,19 +112,20 @@ func TestScheduleService_StartVisit(t *testing.T) {
 }
 
 func TestScheduleService_EndVisit(t *testing.T) {
-	logger := logrus.New()
-	logger.SetLevel(logrus.ErrorLevel)
-	
-	service := services.NewScheduleService(logger)
-	service.InitializeData()
-	
 	t.Run("Valid End Visit", func(t *testing.T) {
+		logger := logrus.New()
+		logger.SetLevel(logrus.ErrorLevel)
+		
+		service := services.NewScheduleService(logger)
+		service.InitializeData()
 		req := models.EndVisitRequest{
-			Latitude:  1.3048,
-			Longitude: 103.8318,
-			Address:   "456 Test Avenue",
-			Timestamp: time.Now().Format(time.RFC3339),
-			Notes:     "Visit completed successfully",
+			Location: models.Location{
+				Latitude:  1.3048,
+				Longitude: 103.8318,
+				Address:   "456 Test Avenue",
+				Timestamp: time.Now().Format(time.RFC3339),
+			},
+			Notes: "Visit completed successfully",
 		}
 		
 		// Schedule 2 is in-progress
@@ -141,11 +142,19 @@ func TestScheduleService_EndVisit(t *testing.T) {
 	})
 	
 	t.Run("Invalid Schedule ID", func(t *testing.T) {
+		logger := logrus.New()
+		logger.SetLevel(logrus.ErrorLevel)
+		
+		service := services.NewScheduleService(logger)
+		service.InitializeData()
+		
 		req := models.EndVisitRequest{
-			Latitude:  1.3048,
-			Longitude: 103.8318,
-			Address:   "456 Test Avenue",
-			Timestamp: time.Now().Format(time.RFC3339),
+			Location: models.Location{
+				Latitude:  1.3048,
+				Longitude: 103.8318,
+				Address:   "456 Test Avenue",
+				Timestamp: time.Now().Format(time.RFC3339),
+			},
 		}
 		
 		err := service.EndVisit("999", req)
@@ -155,11 +164,19 @@ func TestScheduleService_EndVisit(t *testing.T) {
 	})
 	
 	t.Run("Not In Progress", func(t *testing.T) {
+		logger := logrus.New()
+		logger.SetLevel(logrus.ErrorLevel)
+		
+		service := services.NewScheduleService(logger)
+		service.InitializeData()
+		
 		req := models.EndVisitRequest{
-			Latitude:  1.3048,
-			Longitude: 103.8318,
-			Address:   "456 Test Avenue",
-			Timestamp: time.Now().Format(time.RFC3339),
+			Location: models.Location{
+				Latitude:  1.3048,
+				Longitude: 103.8318,
+				Address:   "456 Test Avenue",
+				Timestamp: time.Now().Format(time.RFC3339),
+			},
 		}
 		
 		// Schedule 1 is scheduled, not in-progress
@@ -171,13 +188,12 @@ func TestScheduleService_EndVisit(t *testing.T) {
 }
 
 func TestScheduleService_CancelSchedule(t *testing.T) {
-	logger := logrus.New()
-	logger.SetLevel(logrus.ErrorLevel)
-	
-	service := services.NewScheduleService(logger)
-	service.InitializeData()
-	
 	t.Run("Valid Cancel", func(t *testing.T) {
+		logger := logrus.New()
+		logger.SetLevel(logrus.ErrorLevel)
+		
+		service := services.NewScheduleService(logger)
+		service.InitializeData()
 		err := service.CancelSchedule("1")
 		
 		assert.NoError(t, err)
@@ -188,6 +204,12 @@ func TestScheduleService_CancelSchedule(t *testing.T) {
 	})
 	
 	t.Run("Invalid Schedule ID", func(t *testing.T) {
+		logger := logrus.New()
+		logger.SetLevel(logrus.ErrorLevel)
+		
+		service := services.NewScheduleService(logger)
+		service.InitializeData()
+		
 		err := service.CancelSchedule("999")
 		
 		assert.Error(t, err)
@@ -195,6 +217,12 @@ func TestScheduleService_CancelSchedule(t *testing.T) {
 	})
 	
 	t.Run("Cannot Cancel Completed", func(t *testing.T) {
+		logger := logrus.New()
+		logger.SetLevel(logrus.ErrorLevel)
+		
+		service := services.NewScheduleService(logger)
+		service.InitializeData()
+		
 		// Schedule 3 is completed
 		err := service.CancelSchedule("3")
 		
@@ -227,7 +255,7 @@ func TestScheduleService_CreateTask(t *testing.T) {
 		
 		// Verify task was added to schedule
 		schedule, _ := service.GetScheduleByID("1")
-		assert.Len(t, schedule.Tasks, 3) // Originally 2, now 3
+		assert.Len(t, schedule.Tasks, 4) // Originally 3, now 4
 	})
 	
 	t.Run("Invalid Schedule ID", func(t *testing.T) {
@@ -257,14 +285,14 @@ func TestScheduleService_UpdateTask(t *testing.T) {
 			Reason:    "Task completed successfully",
 		}
 		
-		err := service.UpdateTask("task-1", req)
+		err := service.UpdateTask("task1", req)
 		
 		assert.NoError(t, err)
 		
 		// Verify task was updated
 		schedule, _ := service.GetScheduleByID("1")
 		for _, task := range schedule.Tasks {
-			if task.ID == "task-1" {
+			if task.ID == "task1" {
 				assert.True(t, task.Completed)
 				assert.Equal(t, "Task completed successfully", task.Reason)
 				break
@@ -328,7 +356,7 @@ func TestScheduleService_GetStats(t *testing.T) {
 	
 	assert.NoError(t, err)
 	assert.NotNil(t, stats)
-	assert.Equal(t, 3, stats.TotalSchedules)
+	assert.Equal(t, 10, stats.TotalSchedules)
 	// Note: The exact values depend on the sample data and current date
 }
 
@@ -342,10 +370,10 @@ func TestScheduleService_GetActiveVisit(t *testing.T) {
 	activeVisit, err := service.GetActiveVisit()
 	
 	assert.NoError(t, err)
-	// Schedule 2 is in-progress in our sample data
+	// One of the schedules (2 or 7) is in-progress in our sample data
 	if activeVisit != nil {
 		assert.Equal(t, "in-progress", activeVisit.Status)
-		assert.Equal(t, "2", activeVisit.ID)
+		assert.Contains(t, []string{"2", "7"}, activeVisit.ID)
 	}
 }
 

@@ -1,11 +1,11 @@
-import { statsAPI } from '../api';
-import { Stats } from '../models/Schedule';
+import { statsAPI } from '../services/api';
+import { Stats } from '../hooks/types';
 
 export class StatsService {
   static async getStats(): Promise<Stats> {
     try {
       const response = await statsAPI.get();
-      return response.data;
+      return response.data.data;
     } catch (error) {
       throw new Error(error instanceof Error ? error.message : 'Failed to fetch stats');
     }

@@ -27,8 +27,53 @@ func NewScheduleService(logger *logrus.Logger) *ScheduleService {
 func (s *ScheduleService) InitializeData() {
 	s.logger.Info("Initializing schedule data from data.go")
 	
-	// This will be set by the main package using SetScheduleData
-	// For now, we'll use empty data and let main package populate it
+	// Create deep copies of schedules to avoid shared state between tests
+	for _, originalSchedule := range models.Schedules {
+		// Create a deep copy of the schedule
+		scheduleCopy := models.Schedule{
+			ID:            originalSchedule.ID,
+			ClientName:    originalSchedule.ClientName,
+			ClientEmail:   originalSchedule.ClientEmail,
+			ClientPhone:   originalSchedule.ClientPhone,
+			ServiceName:   originalSchedule.ServiceName,
+			Date:          originalSchedule.Date,
+			StartTime:     originalSchedule.StartTime,
+			EndTime:       originalSchedule.EndTime,
+			Location:      originalSchedule.Location,
+			Status:        originalSchedule.Status,
+			ServiceNotes:  originalSchedule.ServiceNotes,
+			Notes:         originalSchedule.Notes,
+		}
+		
+		// Deep copy tasks
+		if originalSchedule.Tasks != nil {
+			scheduleCopy.Tasks = make([]models.Task, len(originalSchedule.Tasks))
+			copy(scheduleCopy.Tasks, originalSchedule.Tasks)
+		}
+		
+		// Deep copy time pointers
+		if originalSchedule.ActualStartTime != nil {
+			startTimeCopy := *originalSchedule.ActualStartTime
+			scheduleCopy.ActualStartTime = &startTimeCopy
+		}
+		if originalSchedule.ActualEndTime != nil {
+			endTimeCopy := *originalSchedule.ActualEndTime
+			scheduleCopy.ActualEndTime = &endTimeCopy
+		}
+		
+		// Deep copy location pointers
+		if originalSchedule.StartLocation != nil {
+			startLocCopy := *originalSchedule.StartLocation
+			scheduleCopy.StartLocation = &startLocCopy
+		}
+		if originalSchedule.EndLocation != nil {
+			endLocCopy := *originalSchedule.EndLocation
+			scheduleCopy.EndLocation = &endLocCopy
+		}
+		
+		s.data[scheduleCopy.ID] = &scheduleCopy
+	}
+	
 	s.logger.WithField("count", len(s.data)).Info("Schedule data initialized from data.go")
 }
 
@@ -144,12 +189,7 @@ func (s *ScheduleService) EndVisit(id string, req models.EndVisitRequest) error 
 	now := time.Now()
 	schedule.Status = "completed"
 	schedule.ActualEndTime = &now
-	schedule.EndLocation = &models.Location{
-		Latitude:  req.Latitude,
-		Longitude: req.Longitude,
-		Address:   req.Address,
-		Timestamp: req.Timestamp,
-	}
+	schedule.EndLocation = &req.Location
 	
 	if req.Notes != "" {
 		schedule.Notes = req.Notes
@@ -158,7 +198,7 @@ func (s *ScheduleService) EndVisit(id string, req models.EndVisitRequest) error 
 	s.logger.WithFields(logrus.Fields{
 		"schedule_id": id,
 		"end_time":   now,
-		"location":   req.Address,
+		"location":   req.Location.Address,
 	}).Info("Visit ended successfully")
 	
 	return nil

@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "handler.go",
+      "use": "@vercel/go"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/handler.go"
+    }
+  ],
+  "env": {
+    "GIN_MODE": "release"
+  }
+}

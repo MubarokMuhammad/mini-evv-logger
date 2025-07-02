@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../store/hooks.ts';
-import { addNotification } from '../store/slices/uiSlice.ts';
+import { useAppDispatch } from '../store/hooks';
+import { addNotification } from '../store/slices/uiSlice';
 
 export interface UserProfile {
   name: string;
@@ -34,7 +34,6 @@ export const useProfileViewModel = () => {
       
       // Show success notification
       dispatch(addNotification({
-        id: Date.now().toString(),
         type: 'success',
         message: 'Successfully logged out'
       }));
@@ -43,7 +42,6 @@ export const useProfileViewModel = () => {
       navigate('/login');
     } catch (error) {
       dispatch(addNotification({
-        id: Date.now().toString(),
         type: 'error',
         message: 'Failed to logout. Please try again.'
       }));
@@ -55,7 +53,6 @@ export const useProfileViewModel = () => {
   const handleEditProfile = useCallback(() => {
     // In a real app, this would navigate to edit profile page
     dispatch(addNotification({
-      id: Date.now().toString(),
       type: 'info',
       message: 'Edit profile feature coming soon'
     }));
@@ -64,7 +61,6 @@ export const useProfileViewModel = () => {
   const handleChangePassword = useCallback(() => {
     // In a real app, this would navigate to change password page
     dispatch(addNotification({
-      id: Date.now().toString(),
       type: 'info',
       message: 'Change password feature coming soon'
     }));

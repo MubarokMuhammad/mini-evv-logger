@@ -1,105 +1,27 @@
-/* Desktop Layout Styles */
+/* Desktop Layout */
 .desktop-layout {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: #f8f9fa;
 }
 
-/* Desktop Sidebar */
-.desktop-sidebar {
-  width: 280px;
-  background: white;
-  border-right: 1px solid #e9ecef;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  z-index: 1000;
-}
+/* Desktop Sidebar - Hidden/Removed */
+/* Sidebar styles removed as we're using horizontal navbar now */
 
-.sidebar-header {
-  padding: 24px;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-icon {
-  font-size: 24px;
-}
-
-.logo-text {
-  font-size: 20px;
-  font-weight: 600;
-  color: #2c7873;
-}
-
-.sidebar-nav {
-  flex: 1;
-  padding: 24px 0;
-}
-
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-item {
-  margin-bottom: 8px;
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 24px;
-  color: #6c757d;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.nav-link:hover {
-  background-color: #f8f9fa;
-  color: #2c7873;
-}
-
-.nav-link.active {
-  background-color: #e8f4f3;
-  color: #2c7873;
-  border-right: 3px solid #2c7873;
-}
-
-.nav-icon {
-  font-size: 18px;
-}
-
-.nav-label {
-  font-weight: 500;
-}
-
-/* Desktop Main Content */
-.desktop-main {
-  flex: 1;
-  margin-left: 280px;
-  display: flex;
-  flex-direction: column;
-}
+/* Desktop Main Content - No longer needed */
 
 /* Desktop Header */
 .desktop-header {
-  background: white;
+  background: #e8f4f3;
   border-bottom: 1px solid #e9ecef;
-  padding: 0 32px;
+  padding: 16px 32px;
   height: 80px;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-content {
@@ -109,11 +31,14 @@
   width: 100%;
 }
 
-.page-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
 }
 
 .user-profile {
@@ -154,7 +79,7 @@
   font-size: 14px;
 }
 
-.user-role {
+.user-email {
   font-size: 12px;
   color: #6c757d;
 }
@@ -169,6 +94,7 @@
   flex: 1;
   padding: 32px;
   overflow-y: auto;
+  background-color: #f8f9fa;
 }
 
 /* Desktop Dashboard */

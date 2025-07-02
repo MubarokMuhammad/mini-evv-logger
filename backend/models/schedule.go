@@ -57,11 +57,8 @@ type StartVisitRequest struct {
 
 // EndVisitRequest represents the request to end a visit
 type EndVisitRequest struct {
-	Latitude  float64 `json:"latitude" validate:"required,min=-90,max=90" example:"1.3521"`
-	Longitude float64 `json:"longitude" validate:"required,min=-180,max=180" example:"103.8198"`
-	Address   string  `json:"address" validate:"required" example:"123 Main Street, Singapore 123456"`
-	Timestamp string  `json:"timestamp" validate:"required" example:"2023-12-01T10:15:00Z"`
-	Notes     string  `json:"notes" example:"Visit completed successfully"`
+	Location Location `json:"location" validate:"required"`
+	Notes    string   `json:"notes" example:"Visit completed successfully"`
 }
 
 // UpdateTaskRequest represents the request to update a task

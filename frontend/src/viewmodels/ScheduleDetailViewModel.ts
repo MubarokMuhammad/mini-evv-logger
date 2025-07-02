@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
-import { fetchSchedules, startVisit, endVisit } from '../store/slices/scheduleSlice.ts';
-import { addNotification } from '../store/slices/uiSlice.ts';
-import { Schedule, Task } from '../models/Schedule.ts';
-import { ScheduleService } from '../services/ScheduleService.ts';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchSchedules, startVisit, endVisit } from '../store/slices/scheduleSlice';
+import { addNotification } from '../store/slices/uiSlice';
+import { Schedule, Task } from '../models/Schedule';
+import { ScheduleService } from '../services/ScheduleService';
 
 export const useScheduleDetailViewModel = (scheduleId: string) => {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Schedule } from '../../types.ts';
-import { scheduleAPI } from '../../api.ts';
-import { getCurrentLocation } from '../../utils/geolocation.ts';
+import { Schedule } from '../../hooks/types';
+import { scheduleAPI } from '../../services/api';
+import { getCurrentLocation } from '../../utils/geolocation';
 
 interface ScheduleState {
   schedules: Schedule[];

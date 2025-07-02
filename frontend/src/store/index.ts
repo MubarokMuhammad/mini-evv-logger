@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import scheduleReducer from './slices/scheduleSlice.ts';
-import statsReducer from './slices/statsSlice.ts';
-import uiReducer from './slices/uiSlice.ts';
+import scheduleReducer from './slices/scheduleSlice';
+import statsReducer from './slices/statsSlice';
+import uiReducer from './slices/uiSlice';
 
 export const store = configureStore({
   reducer: {

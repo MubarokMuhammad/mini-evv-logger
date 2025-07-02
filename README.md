@@ -1,405 +1,246 @@
-# Mini EVV Logger – Caregiver Shift Tracker
+# Mini EVV Logger
 
-A comprehensive Electronic Visit Verification (EVV) system for caregivers to track their daily shifts, manage visit schedules, and log care activities with real-time geolocation compliance.
+A comprehensive Electronic Visit Verification (EVV) system for healthcare providers to track and manage patient visits with real-time location verification.
 
-## 🎯 Features
+## 🚀 Features
 
-### 📱 Responsive Design
-- **Mobile View**: Optimized mobile interface for caregivers in the field
-- **Desktop View**: Comprehensive dashboard for administrators and supervisors
-- **Automatic Device Detection**: Automatically switches between mobile and desktop layouts
-- **Subdomain Support**: Access mobile view via `mobile.domain.com`
-- Clean, intuitive UI matching modern healthcare app standards
-- Real-time timer display for active visits
-
-### 🏠 Home Dashboard
-- **Visit Statistics**: Display missed, upcoming, and completed schedules
-- **Active Visit Tracking**: Real-time timer with clock-out functionality
-- **Schedule Overview**: Quick access to all scheduled visits
-
-### 📋 Schedule Management
-- **Visit Details**: Complete client information and care instructions
-- **Task Tracking**: Mark activities as completed or not completed with reasons
-- **Location Verification**: GPS-based clock-in/clock-out with geolocation
-- **Service Notes**: Detailed care instructions and notes
-
-### ✅ EVV Compliance
-- **Geolocation Tracking**: Mandatory GPS coordinates for visit verification
-- **Timestamping**: Accurate start/end times for all visits
-- **Activity Logging**: Detailed task completion tracking
-- **Visit Reports**: Comprehensive visit summaries
+- **Real-time Visit Tracking**: Clock-in/clock-out functionality with GPS location verification
+- **Responsive Design**: Optimized for both desktop and mobile devices
+- **Live Dashboard**: Real-time statistics and schedule management
+- **Geolocation Integration**: Browser-based location tracking with graceful fallbacks
+- **Visit Management**: Complete visit lifecycle from scheduling to completion
 
 ## 🛠 Tech Stack
 
-### Backend
-- **Language**: Go (Golang)
-- **Framework**: Gin Web Framework
-- **Data Storage**: JSON file with in-memory caching (easily extensible to database)
-- **CORS**: Enabled for frontend integration
-- **Documentation**: Swagger/OpenAPI integration
-- **Logging**: Structured logging with logrus
-
 ### Frontend
-- **Framework**: React 18 with TypeScript
-- **Routing**: React Router v6
-- **HTTP Client**: Axios
-- **Styling**: Custom CSS with mobile-first approach
-- **Geolocation**: Browser's built-in Geolocation API
-- **State Management**: React hooks and context
+- **React 18** with TypeScript for type safety
+- **Redux Toolkit** for state management
+- **React Router** for navigation
+- **Responsive CSS** for cross-device compatibility
+- **MVVM Architecture** for clean separation of concerns
 
-### Key Technical Decisions
-- **Go Backend**: Chosen for performance, simplicity, and excellent concurrency support
-- **TypeScript**: Ensures type safety and better developer experience
-- **JSON Data Storage**: Simple file-based storage for demo purposes, easily replaceable with database
-- **Mobile-First Design**: Prioritizes mobile experience as caregivers primarily use mobile devices
-- **RESTful API**: Standard REST endpoints for clear, predictable API design
+### Backend
+- **Go (Golang)** with Gin framework
+- **MVVM Architecture** with clean layered structure
+- **Swagger UI** for API documentation
+- **Structured Logging** with logrus
+- **Comprehensive Error Handling**
+- **Unit Testing** with Go testing framework
 
-#### Architecture
-- **MVC Pattern**: Clean separation of concerns with Models, Views, and Controllers
-- **RESTful API**: Standard HTTP methods and status codes
-- **Component-Based Frontend**: Reusable React components with TypeScript
-- **State Management**: Redux Toolkit for predictable state updates
+### Database
+- **JSON File Storage** (`backend/data/schedules.json`) for simplicity and portability
+- In-memory caching for performance
 
-#### Data Storage
-- **JSON File with In-Memory Caching**: Balance between simplicity and performance
-- **Structured Data Models**: Clear interfaces for Schedule and Task entities
-- **Fallback Mechanisms**: Hardcoded data as backup when JSON file is unavailable
+## 📋 Key Architecture Decisions
 
-#### Responsive Design Strategy
-- **Device Detection**: Automatic detection of mobile vs desktop devices
-- **Dual Interface System**: 
-  - **Mobile View**: Optimized for caregivers in the field (375px width)
-  - **Desktop View**: Comprehensive dashboard for administrators
-- **Flexible Routing**: Different layouts and components based on device type
-- **Subdomain Support**: `mobile.domain.com` for explicit mobile access
-- **Touch-Friendly Interface**: Large buttons and intuitive navigation
-- **Real-Time Updates**: Live timer and automatic data refresh
+### Frontend MVVM Pattern
+- **Views**: React components for UI presentation
+- **ViewModels**: Custom hooks for business logic and state management
+- **Models**: TypeScript interfaces and types
+- **Component Reusability**: Shared widgets and hooks across desktop/mobile
 
-## 🚀 Getting Started
+### Backend MVVM Pattern
+- **Views**: HTTP handlers and response formatting
+- **ViewModels**: Business logic and data transformation
+- **Models**: Data structures and validation
+- **Services**: Core business operations
 
-### Prerequisites
-- Go 1.21 or higher
-- Node.js 16 or higher
-- npm or yarn
-- Git (for cloning the repository)
+### State Management
+- **Redux Toolkit** for global state (schedules, stats, user data)
+- **Local State** for component-specific data
+- **Custom Hooks** for reusable stateful logic
 
-### Quick Start
+## 🌍 Geolocation Implementation
 
-1. **Clone the repository**:
-```bash
-git clone git@github.com:MubarokMuhammad/mini-evv-logger.git
-cd mini-evv-logger
-```
+### Browser Geolocation API
+- Primary method using `navigator.geolocation.getCurrentPosition()`
+- High accuracy positioning for precise location tracking
+- Timeout and error handling for reliability
 
-### Backend Setup
-
-1. Navigate to the backend directory:
-```bash
-cd backend
-```
-
-2. Install Go dependencies:
-```bash
-go mod tidy
-```
-
-3. Build the application (optional):
-```bash
-go build -o server
-```
-
-4. Run the backend server:
-```bash
-# Option 1: Run directly
-go run .
-
-# Option 2: Run built binary
-./server
-```
-
-The backend server will start on `http://localhost:8080`
-
-**Backend Features Available**:
-- ✅ RESTful API endpoints
-- ✅ JSON data loading from `data/schedules.json`
-- ✅ Swagger documentation at `http://localhost:8080/swagger/index.html`
-- ✅ CORS enabled for frontend integration
-- ✅ Structured logging
-
-### Frontend Setup
-
-1. Open a new terminal and navigate to the frontend directory:
-```bash
-cd frontend
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm start
-```
-
-The frontend will be available at `http://localhost:3000`
-
-**Frontend Features Available**:
-- ✅ Mobile-responsive design
-- ✅ Real-time visit tracking
-- ✅ Geolocation integration
-- ✅ Task management
-- ✅ Schedule overview
-
-### Verification
-
-Once both servers are running:
-1. Open `http://localhost:3000` in your browser
-2. You should see the EVV Logger dashboard
-3. Test geolocation by starting a visit (allow location access when prompted)
-4. Check API documentation at `http://localhost:8080/swagger/index.html`
-
-## 📚 API Documentation
-
-### Endpoints
-
-#### Schedules
-- `GET /api/schedules` - Get all schedules
-- `GET /api/schedules/today` - Get today's schedules
-- `GET /api/schedules/:id` - Get specific schedule details
-- `POST /api/schedules/:id/start` - Start a visit (clock-in)
-- `POST /api/schedules/:id/end` - End a visit (clock-out)
-
-#### Tasks
-- `POST /api/tasks/:taskId/update` - Update task status
-
-#### Statistics
-- `GET /api/stats` - Get dashboard statistics
-
-### Request/Response Examples
-
-#### Start Visit
-```json
-POST /api/schedules/1/start
-{
-  "latitude": 44.9778,
-  "longitude": -93.2650
-}
-```
-
-#### Update Task
-```json
-POST /api/tasks/task1/update
-{
-  "completed": true,
-  "reason": "Task completed successfully"
-}
-```
-
-## 🌍 Geolocation Handling
-
-The application uses the browser's built-in Geolocation API for EVV compliance:
-
-### Implementation
-- **Mandatory**: Location access is required for clock-in/clock-out
-- **Fallback**: Clear error messages when geolocation is unavailable
-- **Privacy**: Location data is only used for EVV compliance
-
-### Error Handling
-- Browser doesn't support geolocation
-- User denies location permission
-- Location services are disabled
-- GPS signal is unavailable
+### Graceful Fallbacks
+1. **Permission Denied**: Uses default coordinates with user notification
+2. **Position Unavailable**: Fallback to cached location or manual entry
+3. **Timeout**: Retry mechanism with reduced accuracy requirements
+4. **Unsupported Browser**: Manual location entry option
 
 ## 🏗 Project Structure
 
 ```
 mini-evv-logger/
-├── backend/
-│   ├── data/
-│   │   └── schedules.json      # JSON data storage
-│   ├── docs/
-│   │   └── docs.go             # Swagger documentation
-│   ├── middleware/
-│   │   ├── error_handler.go    # Error handling middleware
-│   │   └── logging.go          # Logging middleware
-│   ├── models/
-│   │   ├── data.go             # Data loading and management
-│   │   └── schedule.go         # Schedule data structures
-│   ├── services/
-│   │   └── schedule_service.go # Business logic
-│   ├── tests/
-│   │   └── schedule_service_test.go # Unit tests
-│   ├── viewmodels/
-│   │   └── schedule_viewmodel.go # View models
-│   ├── views/
-│   │   └── schedule_view.go    # API handlers
-│   ├── main.go                 # Server entry point
-│   ├── go.mod                  # Go dependencies
-│   └── go.sum                  # Go dependency checksums
-├── frontend/
+├── frontend/                 # React TypeScript application
 │   ├── src/
-│   │   ├── components/         # React components
-│   │   ├── models/             # TypeScript interfaces
-│   │   ├── services/           # API services
-│   │   ├── store/              # State management
-│   │   ├── utils/              # Utility functions
-│   │   ├── viewmodels/         # View models
-│   │   ├── views/              # Page components
-│   │   ├── types.ts            # TypeScript type definitions
-│   │   ├── api.ts              # API client
-│   │   ├── App.tsx             # Main app component
-│   │   └── index.tsx           # App entry point
-│   ├── public/
-│   │   ├── assets/             # Static assets
-│   │   └── index.html          # HTML template
-│   ├── build/                  # Production build output
-│   ├── package.json            # Node dependencies
-│   └── package-lock.json       # Node dependency lock
-├── backend-node/               # Alternative Node.js backend
-└── README.md                   # Project documentation
+│   │   ├── views/           # UI components (desktop/mobile)
+│   │   ├── viewmodels/      # Business logic hooks
+│   │   ├── models/          # TypeScript interfaces
+│   │   ├── services/        # API communication
+│   │   ├── store/           # Redux store configuration
+│   │   └── utils/           # Utility functions
+│   └── package.json
+├── backend/                  # Go API server
+│   ├── views/               # HTTP handlers
+│   ├── viewmodels/          # Business logic layer
+│   ├── models/              # Data structures
+│   ├── services/            # Core business services
+│   ├── middleware/          # Logging & error handling
+│   ├── tests/               # Unit tests
+│   ├── data/                # JSON data storage
+│   └── docs/                # Swagger documentation
+└── deploy.sh                # Deployment script
 ```
 
-## 💾 Data Model
+## 🚀 Quick Start
 
-### Schedule
-- Client information (name, contact, address)
-- Service details and timing
-- Task list with completion status
-- Visit tracking (start/end times, locations)
-- Service notes
+### Prerequisites
+- **Node.js** (v16 or higher)
+- **Go** (v1.19 or higher)
+- **Git**
 
-### Task
-- Activity descriptions
-- Completion status (yes/no with reasons)
-- Unique identifiers for tracking
+### 1. Clone Repository
+```bash
+git clone <repository-url>
+cd mini-evv-logger
+```
 
-## 🔧 Configuration
+### 2. Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
 
-### Environment Variables
-- `NODE_ENV`: Set to 'production' for production builds
-- Backend runs on port 8080 by default
-- Frontend development server runs on port 3000
+# Install dependencies
+go mod download
 
-### CORS Configuration
-- Allows all origins in development
-- Configure specific origins for production
+# Run the server
+go run main.go
+```
+Backend will start on `http://localhost:8080`
+
+### 3. Frontend Setup
+```bash
+# Navigate to frontend directory (in new terminal)
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+Frontend will start on `http://localhost:3000`
 
 ## 🧪 Testing
 
-### Backend Testing
+### Backend Unit Tests
 ```bash
+# Run all tests
 cd backend
 go test ./...
+
+# Run tests with coverage
+go test -cover ./...
+
+# Run specific test file
+go test ./tests/
 ```
 
-### Frontend Testing
+### Frontend Tests
 ```bash
 cd frontend
 npm test
 ```
 
-## 📱 Mobile Features
+## 📚 API Documentation
 
-### Responsive Design
-- Optimized for 375px mobile viewport
-- Touch-friendly buttons and interactions
-- Scrollable content areas
+Once the backend is running, access the Swagger UI at:
+`http://localhost:8080/swagger/index.html`
 
-### Device Features
-- Geolocation API integration
-- Touch gesture support
-- Mobile-optimized navigation
+### Key Endpoints
+- `GET /api/schedules` - Get all schedules
+- `POST /api/schedules/{id}/start` - Start a visit
+- `POST /api/schedules/{id}/end` - End a visit
+- `POST /api/schedules/{id}/cancel` - Cancel a visit
+- `GET /api/stats` - Get dashboard statistics
 
-## 🔒 Security Considerations
+## 💾 Data Storage
 
-### Data Privacy
-- Location data used only for EVV compliance
-- No persistent storage of sensitive information
-- Client information properly handled
+### Schedule Data Structure
+Data is stored in `backend/data/schedules.json` with the following structure:
+```json
+{
+  "id": "unique-schedule-id",
+  "clientName": "Patient Name",
+  "serviceName": "Service Type",
+  "address": "Visit Location",
+  "date": "2025-01-15",
+  "startTime": "09:00",
+  "endTime": "10:00",
+  "status": "scheduled|in_progress|completed|cancelled",
+  "startLocation": { "latitude": 0, "longitude": 0, "address": "" },
+  "endLocation": { "latitude": 0, "longitude": 0, "address": "" }
+}
+```
 
-### API Security
-- CORS configuration
-- Input validation
-- Error handling without sensitive data exposure
+## 🔧 Configuration
+
+### Environment Variables
+- Frontend: `.env.production` for production API URLs
+- Backend: Configurable via environment or command line flags
+
+### Default Settings
+- Backend Port: `8080`
+- Frontend Port: `3000`
+- Data File: `backend/data/schedules.json`
+- Log Level: `INFO`
 
 ## 🚀 Deployment
 
-### Backend Deployment
-- Build: `go build`
-- Deploy binary to server
-- Configure environment variables
+Use the included deployment script:
+```bash
+./deploy.sh
+```
 
-### Frontend Deployment
-- Build: `npm run build`
-- Serve static files from `build/` directory
-- Configure API endpoint for production
+This script handles:
+- Backend deployment to Vercel
+- Frontend build and deployment
+- Environment configuration
 
-## 🤝 Contributing
+## 🔍 Key Features Implemented
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+### Frontend
+✅ **Component Reusability**: Shared widgets between desktop and mobile
+✅ **TypeScript**: Full type safety throughout the application
+✅ **State Management**: Redux Toolkit for global state management
+✅ **Responsive Design**: Optimized for all device sizes
+✅ **MVVM Architecture**: Clean separation of concerns
 
-## 🔍 Assumptions Made
+### Backend
+✅ **Unit Tests**: Comprehensive test coverage for services
+✅ **Logging & Error Handling**: Structured logging with proper error responses
+✅ **API Documentation**: Complete Swagger UI documentation
+✅ **MVVM Architecture**: Layered architecture with clear responsibilities
+✅ **Data Persistence**: JSON file-based storage with in-memory caching
 
-### Business Logic
-- **Single Caregiver**: Application designed for one caregiver managing multiple clients
-- **GPS Accuracy**: Assumes GPS coordinates are sufficient for location verification
-- **Visit Duration**: No minimum or maximum visit duration enforced
-- **Task Flexibility**: Tasks can be marked incomplete with reasons (real-world flexibility)
+## 🤔 Assumptions Made
 
-### Technical Assumptions
-- **Modern Browsers**: Assumes support for ES6+, Geolocation API, and modern CSS
-- **Network Connectivity**: Requires stable internet connection for real-time updates
-- **Mobile Usage**: Primary usage on mobile devices (responsive design prioritized)
-- **Development Environment**: Local development with CORS enabled
+1. **Single User System**: Designed for single healthcare provider use
+2. **Browser Compatibility**: Modern browsers with geolocation support
+3. **Network Connectivity**: Assumes reliable internet connection for API calls
+4. **Data Volume**: Optimized for moderate schedule volumes (hundreds, not thousands)
+5. **Security**: Basic implementation suitable for development/demo purposes
+6. **Time Zones**: Uses local browser timezone for all time calculations
 
-### Data Assumptions
-- **Sample Data**: Uses realistic but fictional client and schedule data
-- **Time Zones**: All times assumed to be in local timezone
-- **Location Precision**: GPS coordinates stored with standard precision (6 decimal places)
-- **Data Persistence**: JSON file storage sufficient for demo/prototype purposes
+## 🔮 Future Enhancements
 
-## 📝 Optional Notes
-
-### Future Enhancements
-- **Database Integration**: Easy migration to PostgreSQL/MySQL for production
-- **Authentication**: JWT-based auth system for multi-user support
-- **Offline Support**: Service worker for offline functionality
-- **Push Notifications**: Reminder notifications for upcoming visits
-- **Reporting**: Advanced analytics and compliance reporting
-- **Multi-language**: Internationalization support
-
-### Performance Considerations
-- **Caching**: In-memory caching implemented for frequently accessed data
-- **Lazy Loading**: Components and routes loaded on demand
-- **Optimized Builds**: Production builds minified and optimized
-- **API Efficiency**: Minimal data transfer with focused endpoints
-
-### Security Notes
-- **HTTPS Required**: Production deployment should use HTTPS
-- **Input Validation**: All user inputs validated on both client and server
-- **CORS Configuration**: Restrict origins in production environment
-- **Data Sanitization**: Prevent XSS and injection attacks
-
-### Development Experience
-- **Hot Reload**: Both frontend and backend support hot reload during development
-- **Type Safety**: Full TypeScript coverage for better development experience
-- **Error Handling**: Comprehensive error handling with user-friendly messages
-- **Code Organization**: Clean architecture with separation of concerns
+- Multi-user authentication and authorization
+- Real-time notifications and updates
+- Advanced reporting and analytics
+- Integration with external healthcare systems
+- Offline capability with data synchronization
+- Enhanced security features
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is created for demonstration purposes.
 
-## 🆘 Support
+---
 
-For support and questions:
-- Check the documentation
-- Review error messages in browser console
-- Ensure geolocation permissions are enabled
-- Verify backend server is running on port 8080
+**Note**: This application uses browser geolocation features. Please ensure location permissions are granted for optimal functionality.
