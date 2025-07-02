@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scheduleAPI } from '../../../../services/api';
 import { getCurrentLocation } from '../../../../utils/geolocation';
@@ -43,22 +43,23 @@ export const useScheduleDetails = (id: string | undefined) => {
   const [clockingIn, setClockingIn] = useState(false);
 
   // Extract fetchSchedule function so it can be reused
-  const fetchSchedule = async () => {
+  const fetchSchedule = useCallback(async () => {
     try {
       const response = await scheduleAPI.getById(id!);
       setSchedule(response.data.data);
     } catch (error) {
       console.error('Error fetching schedule:', error);
+      setError('Failed to fetch schedule');
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     if (id) {
       fetchSchedule();
     }
-  }, [id]);
+  }, [id, fetchSchedule]);
 
   // Redirect to Clock-Out page if status is in-progress
   useEffect(() => {

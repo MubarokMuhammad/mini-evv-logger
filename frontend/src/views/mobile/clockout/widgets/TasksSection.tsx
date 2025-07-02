@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Schedule, Task } from '../../../../hooks/types';
+import { Schedule } from '../../../../hooks/types';
 import { taskAPI } from '../../../../services/api';
 
 interface TasksSectionProps {

@@ -15,7 +15,7 @@ import { useScheduleDetails } from './hooks/useScheduleDetails';
 
 const ScheduleDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { schedule, loading, error, clockingIn, handleClockIn } = useScheduleDetails(id);
+  const { schedule, loading, clockingIn, handleClockIn } = useScheduleDetails(id);
 
   if (loading) {
     return <ScheduleLoadingState />;

@@ -1,5 +1,5 @@
 import { scheduleAPI } from './api';
-import { Schedule, Location } from '../models/Schedule';
+import { Schedule } from '../models/Schedule';
 import { getCurrentLocation } from '../utils/geolocation';
 
 export class ScheduleService {

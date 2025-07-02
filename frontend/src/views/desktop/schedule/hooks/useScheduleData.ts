@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scheduleAPI } from '../../../../services/api';
 
@@ -39,7 +39,7 @@ export const useScheduleData = (id: string | undefined) => {
   const [schedule, setSchedule] = useState<Schedule | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchSchedule = async () => {
+  const fetchSchedule = useCallback(async () => {
     try {
       const response = await scheduleAPI.getById(id!);
       setSchedule(response.data.data);
@@ -48,13 +48,13 @@ export const useScheduleData = (id: string | undefined) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     if (id) {
       fetchSchedule();
     }
-  }, [id]);
+  }, [id, fetchSchedule]);
 
   // Redirect to Clock-Out page if status is in-progress
   useEffect(() => {
