@@ -1,0 +1,16 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <clipPath id="clip">
+        <circle cx="30" cy="30" r="30"/>
+    </clipPath>
+</defs>
+<circle cx="30" cy="30" r="30" fill="#2c7873"/>
+<rect x="0" y="0" width="60" height="60" fill="url(#motherhood)" clip-path="url(#clip)"/>
+<defs>
+    <pattern id="motherhood" patternUnits="userSpaceOnUse" width="60" height="60">
+        <rect width="60" height="60" fill="#2c7873"/>
+        <circle cx="30" cy="25" r="8" fill="rgba(255,255,255,0.9)"/>
+        <ellipse cx="30" cy="45" rx="15" ry="8" fill="rgba(255,255,255,0.9)"/>
+    </pattern>
+</defs>
+</svg>

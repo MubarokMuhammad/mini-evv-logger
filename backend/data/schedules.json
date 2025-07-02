@@ -1,0 +1,362 @@
+{
+  "schedules": [
+    {
+      "id": "1",
+      "clientName": "Melisa Adam",
+      "clientEmail": "melisa@gmail.com",
+      "clientPhone": "+44 1232 212 3233",
+      "serviceName": "Service Name A",
+      "date": "Mon, 1 Jul 2025",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "location": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Casa Grande Apartment, 4333 Willison Street, Minneapolis, MN, 55415"
+      },
+      "status": "scheduled",
+      "tasks": [
+        {
+          "id": "task1",
+          "name": "Give medication",
+          "description": "Administer prescribed medications according to the medication schedule and dosage instructions.",
+          "completed": false
+        },
+        {
+          "id": "task2",
+          "name": "Assist with bathing",
+          "description": "Help client with personal hygiene and bathing activities while ensuring safety and dignity.",
+          "completed": false
+        },
+        {
+          "id": "task3",
+          "name": "Prepare meals",
+          "description": "Prepare nutritious meals according to dietary requirements and client preferences.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Lorem ipsum dolor sit amet consectetur. Praesent adipiscing mollit est vestibulum leo tempus sociis. Sodales libero mauris eu donec tempor in sagittis urna turpis. Vitae et vestibulum convallis volutpat commodo blandit in turpis viverra. Semper magna arnet ipsum massa turpis non tortor."
+    },
+    {
+      "id": "2",
+      "clientName": "Melisa Adam",
+      "clientEmail": "melisa@gmail.com",
+      "clientPhone": "+44 1232 212 3233",
+      "serviceName": "Service Name A",
+      "date": "Wed, 2 Jul 2025",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "location": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Casa Grande Apartment"
+      },
+      "status": "in-progress",
+      "tasks": [
+        {
+          "id": "task4",
+          "name": "Check vital signs",
+          "description": "Monitor and record blood pressure, temperature, pulse, and respiratory rate.",
+          "completed": true
+        },
+        {
+          "id": "task5",
+          "name": "Assist with mobility",
+          "description": "Help client with walking, transferring from bed to chair, and physical therapy exercises.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Lorem ipsum dolor sit amet consectetur. Praesent adipiscing mollit est vestibulum leo tempus sociis.",
+      "actualStartTime": "2025-07-02T08:00:00Z",
+      "startLocation": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Casa Grande Apartment"
+      }
+    },
+    {
+      "id": "3",
+      "clientName": "Melisa Adam",
+      "clientEmail": "melisa@gmail.com",
+      "clientPhone": "+44 1232 212 3233",
+      "serviceName": "Service Name A",
+      "date": "Mon, 30 Jun 2025",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "location": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Casa Grande Apartment"
+      },
+      "status": "completed",
+      "tasks": [
+        {
+          "id": "task6",
+          "name": "Provide companionship",
+          "description": "Engage in conversation, provide emotional support, and participate in recreational activities.",
+          "completed": true
+        },
+        {
+          "id": "task7",
+          "name": "Light housekeeping",
+          "description": "Perform light cleaning tasks, organize living space, and maintain a safe environment.",
+          "completed": true
+        }
+      ],
+      "serviceNotes": "Lorem ipsum dolor sit amet consectetur. Praesent adipiscing mollit est vestibulum leo tempus sociis.",
+      "actualStartTime": "2025-06-30T07:00:00Z",
+      "actualEndTime": "2025-06-30T08:00:00Z",
+      "startLocation": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Casa Grande Apartment"
+      },
+      "endLocation": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Casa Grande Apartment"
+      }
+    },
+    {
+      "id": "4",
+      "clientName": "Melisa Adam",
+      "clientEmail": "melisa@gmail.com",
+      "clientPhone": "+44 1232 212 3233",
+      "serviceName": "Service Name A",
+      "date": "Sun, 29 Jun 2025",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "location": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Casa Grande Apartment"
+      },
+      "status": "cancelled",
+      "tasks": [
+        {
+          "id": "task8",
+          "name": "Activity Name A",
+          "description": "Lorem ipsum dolor sit amet consectetur. Est id ullamcorper magna faucibus mollis bibendum duis ut et eu nibh sed lacus ut.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Lorem ipsum dolor sit amet consectetur. Praesent adipiscing mollit est vestibulum leo tempus sociis."
+    },
+    {
+      "id": "5",
+      "clientName": "John Smith",
+      "clientEmail": "john@gmail.com",
+      "clientPhone": "+44 1232 212 3234",
+      "serviceName": "Service Name B",
+      "date": "Sat, 28 Jun 2025",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "location": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Downtown Apartment"
+      },
+      "status": "missed",
+      "tasks": [
+        {
+          "id": "task9",
+          "name": "Medication reminder",
+          "description": "Remind client to take prescribed medications and monitor for any side effects or reactions.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Lorem ipsum dolor sit amet consectetur. Praesent adipiscing mollit est vestibulum leo tempus sociis."
+    },
+    {
+      "id": "6",
+      "clientName": "Sarah Johnson",
+      "clientEmail": "sarah@gmail.com",
+      "clientPhone": "+44 1232 212 3235",
+      "serviceName": "Service Name C",
+      "date": "Thu, 3 Jul 2025",
+      "startTime": "14:00",
+      "endTime": "15:30",
+      "location": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Riverside Apartment, 1234 River Street, Minneapolis, MN, 55401"
+      },
+      "status": "scheduled",
+      "tasks": [
+        {
+          "id": "task10",
+          "name": "Personal Care Assistance",
+          "description": "Assist with daily personal care activities including bathing, grooming, and medication reminders.",
+          "completed": false
+        },
+        {
+          "id": "task11",
+          "name": "Meal Preparation",
+          "description": "Prepare healthy meals according to dietary requirements and preferences.",
+          "completed": false
+        },
+        {
+          "id": "task12",
+          "name": "Light Housekeeping",
+          "description": "Perform light cleaning tasks to maintain a safe and comfortable living environment.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Client prefers morning routine to be completed before 10 AM. Please ensure all medications are properly organized."
+    },
+    {
+      "id": "7",
+      "clientName": "Robert Wilson",
+      "clientEmail": "robert@gmail.com",
+      "clientPhone": "+44 1232 212 3236",
+      "serviceName": "Service Name D",
+      "date": "Fri, 4 Jul 2025",
+      "startTime": "10:00",
+      "endTime": "11:30",
+      "location": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Sunset Manor, 5678 Oak Avenue, Minneapolis, MN, 55408"
+      },
+      "status": "in-progress",
+      "tasks": [
+        {
+          "id": "task13",
+          "name": "Physical Therapy Support",
+          "description": "Assist with prescribed physical therapy exercises and mobility activities.",
+          "completed": true
+        },
+        {
+          "id": "task14",
+          "name": "Companionship",
+          "description": "Provide social interaction and emotional support through conversation and activities.",
+          "completed": false
+        },
+        {
+          "id": "task15",
+          "name": "Transportation Assistance",
+          "description": "Accompany client to medical appointments and errands as needed.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Client is currently recovering from surgery. Please monitor for any signs of discomfort or complications.",
+      "actualStartTime": "2025-07-04T09:30:00Z",
+      "startLocation": {
+        "latitude": 44.9778,
+        "longitude": -93.2650,
+        "address": "Sunset Manor, 5678 Oak Avenue, Minneapolis, MN, 55408"
+      }
+    },
+    {
+      "id": "8",
+      "clientName": "Maria Rodriguez",
+      "clientEmail": "maria@gmail.com",
+      "clientPhone": "+44 1232 212 3237",
+      "serviceName": "Personal Care Service",
+      "date": "Sat, 5 Jul 2025",
+      "startTime": "08:00",
+      "endTime": "09:30",
+      "location": {
+        "latitude": 44.9720,
+        "longitude": -93.2580,
+        "address": "Riverside Gardens, 1234 River Road, Minneapolis, MN, 55401"
+      },
+      "status": "scheduled",
+      "tasks": [
+        {
+          "id": "task16",
+          "name": "Morning medication",
+          "description": "Administer morning medications including blood pressure and diabetes medication.",
+          "completed": false
+        },
+        {
+          "id": "task17",
+          "name": "Personal hygiene assistance",
+          "description": "Assist with morning personal care routine including bathing and grooming.",
+          "completed": false
+        },
+        {
+          "id": "task18",
+          "name": "Breakfast preparation",
+          "description": "Prepare diabetic-friendly breakfast according to dietary plan.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Client has diabetes and requires careful monitoring of blood sugar levels. Please check glucose before meals."
+    },
+    {
+      "id": "9",
+      "clientName": "David Thompson",
+      "clientEmail": "david@gmail.com",
+      "clientPhone": "+44 1232 212 3238",
+      "serviceName": "Rehabilitation Support",
+      "date": "Sun, 6 Jul 2025",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "location": {
+        "latitude": 44.9850,
+        "longitude": -93.2700,
+        "address": "Golden Years Residence, 9876 Maple Street, Minneapolis, MN, 55410"
+      },
+      "status": "scheduled",
+      "tasks": [
+        {
+          "id": "task19",
+          "name": "Physical therapy exercises",
+          "description": "Guide client through prescribed physical therapy routine for post-stroke recovery.",
+          "completed": false
+        },
+        {
+          "id": "task20",
+          "name": "Speech therapy practice",
+          "description": "Practice speech exercises and communication activities as prescribed by therapist.",
+          "completed": false
+        },
+        {
+          "id": "task21",
+          "name": "Mobility assistance",
+          "description": "Assist with walking exercises and safe transfer techniques.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Client is recovering from stroke. Please be patient with communication and allow extra time for responses."
+    },
+    {
+      "id": "10",
+      "clientName": "Eleanor Chen",
+      "clientEmail": "eleanor@gmail.com",
+      "clientPhone": "+44 1232 212 3239",
+      "serviceName": "Companion Care",
+      "date": "Mon, 7 Jul 2025",
+      "startTime": "11:00",
+      "endTime": "13:00",
+      "location": {
+        "latitude": 44.9680,
+        "longitude": -93.2480,
+        "address": "Harmony Heights, 2468 Pine Avenue, Minneapolis, MN, 55404"
+      },
+      "status": "scheduled",
+      "tasks": [
+        {
+          "id": "task22",
+          "name": "Social engagement",
+          "description": "Engage in conversation and social activities to provide companionship and mental stimulation.",
+          "completed": false
+        },
+        {
+          "id": "task23",
+          "name": "Light exercise",
+          "description": "Guide client through gentle stretching and light exercise routine.",
+          "completed": false
+        },
+        {
+          "id": "task24",
+          "name": "Medication reminder",
+          "description": "Remind client to take afternoon medications and monitor for any side effects.",
+          "completed": false
+        }
+      ],
+      "serviceNotes": "Client enjoys reading and gardening. Please encourage these activities when weather permits."
+    }
+  ]
+}
