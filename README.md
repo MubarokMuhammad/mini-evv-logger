@@ -10,6 +10,16 @@ A comprehensive Electronic Visit Verification (EVV) system for healthcare provid
 - **Geolocation Integration**: Browser-based location tracking with graceful fallbacks
 - **Visit Management**: Complete visit lifecycle from scheduling to completion
 
+## 🌐 Live Demo
+
+Try the application without any setup:
+
+- **Frontend Demo**: [https://mubarok-mini-evv-logger-frontend.vercel.app](https://mubarok-mini-evv-logger-frontend.vercel.app)
+- **Backend API**: [https://mubarok-mini-evv-logger-backend.vercel.app](https://mubarok-mini-evv-logger-backend.vercel.app)
+- **API Documentation**: [https://mubarok-mini-evv-logger-backend.vercel.app/swagger/index.html](https://mubarok-mini-evv-logger-backend.vercel.app/swagger/index.html)
+
+> **Note**: The demo uses sample data and is fully functional. Allow location permissions for the best experience with geolocation features.
+
 ## 🛠 Tech Stack
 
 ### Frontend
