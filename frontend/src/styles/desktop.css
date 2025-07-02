@@ -1,0 +1,545 @@
+/* Desktop Layout Styles */
+.desktop-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Desktop Sidebar */
+.desktop-sidebar {
+  width: 280px;
+  background: white;
+  border-right: 1px solid #e9ecef;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 24px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c7873;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 24px 0;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-bottom: 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  color: #6c757d;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #f8f9fa;
+  color: #2c7873;
+}
+
+.nav-link.active {
+  background-color: #e8f4f3;
+  color: #2c7873;
+  border-right: 3px solid #2c7873;
+}
+
+.nav-icon {
+  font-size: 18px;
+}
+
+.nav-label {
+  font-weight: 500;
+}
+
+/* Desktop Main Content */
+.desktop-main {
+  flex: 1;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop Header */
+.desktop-header {
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+  padding: 0 32px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.user-profile:hover {
+  background-color: #f8f9fa;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* Desktop Content */
+.desktop-content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+/* Desktop Dashboard */
+.desktop-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Active Visit Card */
+.desktop-active-visit {
+  background: #2c7873;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  color: white;
+}
+
+.active-visit-content {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.timer-section {
+  flex-shrink: 0;
+}
+
+.timer-display {
+  font-size: 48px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+.visit-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.client-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.client-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.visit-location,
+.visit-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.location-icon,
+.time-icon {
+  font-size: 16px;
+}
+
+.visit-actions {
+  flex-shrink: 0;
+}
+
+.clock-out-btn {
+  background: white;
+  color: #2c7873;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clock-out-btn:hover {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+}
+
+/* Stats Cards */
+.desktop-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.stat-card.missed .stat-number {
+  color: #dc3545;
+}
+
+.stat-card.upcoming .stat-number {
+  color: #fd7e14;
+}
+
+.stat-card.completed .stat-number {
+  color: #28a745;
+}
+
+/* Schedule Section */
+.desktop-schedule-section {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.schedule-count {
+  background: #e8f4f3;
+  color: #2c7873;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.schedule-list {
+  padding: 0;
+}
+
+/* Desktop Schedule Card */
+.desktop-schedule-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 32px;
+  border-bottom: 1px solid #f1f3f4;
+  transition: background-color 0.2s ease;
+}
+
+.desktop-schedule-card:hover {
+  background-color: #f8f9fa;
+}
+
+.desktop-schedule-card:last-child {
+  border-bottom: none;
+}
+
+.schedule-status {
+  flex-shrink: 0;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.scheduled {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-badge.in-progress {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-badge.completed {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status-badge.cancelled {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.schedule-content {
+  flex: 1;
+  display: flex;
+  gap: 24px;
+}
+
+.client-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.client-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.client-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.service-name {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.schedule-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.location-info,
+.date-info,
+.time-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.time-info {
+  display: flex;
+  gap: 16px;
+}
+
+.schedule-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clock-in-btn,
+.view-progress-btn,
+.view-report-btn {
+  background: #2c7873;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clock-in-btn:hover,
+.view-progress-btn:hover,
+.view-report-btn:hover {
+  background: #1e5a56;
+  transform: translateY(-1px);
+}
+
+.view-progress-btn {
+  background: #fd7e14;
+}
+
+.view-progress-btn:hover {
+  background: #e8690b;
+}
+
+.view-report-btn {
+  background: #6c757d;
+}
+
+.view-report-btn:hover {
+  background: #5a6268;
+}
+
+.more-actions {
+  color: #6c757d;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.more-actions:hover {
+  background-color: #e9ecef;
+}
+
+/* Loading and Error States */
+.desktop-loading,
+.desktop-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  font-size: 18px;
+  color: #6c757d;
+}
+
+.desktop-error {
+  color: #dc3545;
+}
+
+/* Responsive adjustments for desktop */
+@media (max-width: 1400px) {
+  .desktop-sidebar {
+    width: 240px;
+  }
+  
+  .desktop-main {
+    margin-left: 240px;
+  }
+  
+  .desktop-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .desktop-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .active-visit-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  
+  .schedule-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .time-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

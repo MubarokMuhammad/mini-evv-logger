@@ -4,8 +4,11 @@ A comprehensive Electronic Visit Verification (EVV) system for caregivers to tra
 
 ## 🎯 Features
 
-### 📱 Mobile-First Design
-- Responsive web application optimized for mobile devices
+### 📱 Responsive Design
+- **Mobile View**: Optimized mobile interface for caregivers in the field
+- **Desktop View**: Comprehensive dashboard for administrators and supervisors
+- **Automatic Device Detection**: Automatically switches between mobile and desktop layouts
+- **Subdomain Support**: Access mobile view via `mobile.domain.com`
 - Clean, intuitive UI matching modern healthcare app standards
 - Real-time timer display for active visits
 
@@ -50,6 +53,27 @@ A comprehensive Electronic Visit Verification (EVV) system for caregivers to tra
 - **JSON Data Storage**: Simple file-based storage for demo purposes, easily replaceable with database
 - **Mobile-First Design**: Prioritizes mobile experience as caregivers primarily use mobile devices
 - **RESTful API**: Standard REST endpoints for clear, predictable API design
+
+#### Architecture
+- **MVC Pattern**: Clean separation of concerns with Models, Views, and Controllers
+- **RESTful API**: Standard HTTP methods and status codes
+- **Component-Based Frontend**: Reusable React components with TypeScript
+- **State Management**: Redux Toolkit for predictable state updates
+
+#### Data Storage
+- **JSON File with In-Memory Caching**: Balance between simplicity and performance
+- **Structured Data Models**: Clear interfaces for Schedule and Task entities
+- **Fallback Mechanisms**: Hardcoded data as backup when JSON file is unavailable
+
+#### Responsive Design Strategy
+- **Device Detection**: Automatic detection of mobile vs desktop devices
+- **Dual Interface System**: 
+  - **Mobile View**: Optimized for caregivers in the field (375px width)
+  - **Desktop View**: Comprehensive dashboard for administrators
+- **Flexible Routing**: Different layouts and components based on device type
+- **Subdomain Support**: `mobile.domain.com` for explicit mobile access
+- **Touch-Friendly Interface**: Large buttons and intuitive navigation
+- **Real-Time Updates**: Live timer and automatic data refresh
 
 ## 🚀 Getting Started
 

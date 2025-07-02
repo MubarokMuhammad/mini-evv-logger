@@ -14,12 +14,18 @@ body {
   color: #333;
 }
 
-.app {
+.App {
   max-width: 375px;
   margin: 0 auto;
   background: white;
   min-height: 100vh;
   position: relative;
+}
+
+.App.desktop {
+  max-width: none;
+  margin: 0;
+  background: #f8f9fa;
 }
 
 /* Header */
