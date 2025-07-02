@@ -142,7 +142,7 @@ cd backend
 go mod download
 
 # Run the server
-go run main.go
+go run cmd/server/main.go
 ```
 Backend will start on `http://localhost:8080`
 
