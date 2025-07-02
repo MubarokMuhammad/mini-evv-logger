@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
-import App from './App';
+import App from '../App';
 
 // Create a mock store for testing
 const mockStore = configureStore({
