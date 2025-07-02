@@ -33,9 +33,7 @@
       "react-app/jest"
     ]
   },
-  "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/src/test/setupTests.ts"]
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
