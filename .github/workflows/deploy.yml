@@ -86,10 +86,9 @@ jobs:
       
       - name: Deploy to Vercel
         continue-on-error: true
-        uses: amondnet/vercel-action@v25
+        uses: vercel/action-deploy@v1
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_BACKEND }}
           working-directory: backend
@@ -133,10 +132,9 @@ jobs:
           
       - name: Deploy to Vercel
         continue-on-error: true
-        uses: amondnet/vercel-action@v25
+        uses: vercel/action-deploy@v1
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_FRONTEND }}
           working-directory: frontend
