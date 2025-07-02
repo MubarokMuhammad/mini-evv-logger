@@ -20,6 +20,28 @@ Try the application without any setup:
 
 > **Note**: The demo uses sample data and is fully functional. Allow location permissions for the best experience with geolocation features.
 
+## Deployment
+
+This project includes automated CI/CD pipeline using GitHub Actions for deployment to Vercel.
+
+### Automatic Deployment
+- **Trigger**: Push to `main` or `master` branch
+- **Platform**: Vercel
+- **Pipeline**: Test → Build → Deploy
+
+### Setup Deployment
+To enable automatic deployment, configure the required GitHub secrets. See [Deployment Setup Guide](.github/DEPLOYMENT.md) for detailed instructions.
+
+### Manual Deployment
+If you prefer manual deployment:
+```bash
+# Backend
+cd backend && vercel --prod
+
+# Frontend  
+cd frontend && npm run build && vercel --prod
+```
+
 ## 🛠 Tech Stack
 
 ### Frontend
