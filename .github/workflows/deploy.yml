@@ -79,6 +79,7 @@ jobs:
     name: Deploy Backend to Vercel
     needs: [test-backend]
     runs-on: ubuntu-latest
+    environment: production
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v3
@@ -106,6 +107,7 @@ jobs:
     name: Deploy Frontend to Vercel
     needs: [test-frontend, deploy-backend]
     runs-on: ubuntu-latest
+    environment: production
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v3
