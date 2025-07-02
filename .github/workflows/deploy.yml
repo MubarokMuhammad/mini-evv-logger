@@ -77,20 +77,14 @@ jobs:
 
   deploy-backend:
     name: Deploy Backend to Vercel
-    needs: test-backend
+    needs: [test-backend]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v3
       
-      - name: Check Vercel secrets
-        run: |
-          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
-            echo "VERCEL_TOKEN secret is not set. Skipping deployment."
-            exit 0
-          fi
-      
       - name: Deploy to Vercel
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
         continue-on-error: true
         uses: amondnet/vercel-action@v20
         with:
@@ -100,6 +94,10 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_BACKEND }}
           working-directory: backend
           vercel-args: '--prod'
+          
+      - name: Skip deployment message
+        if: ${{ secrets.VERCEL_TOKEN == '' }}
+        run: echo "VERCEL_TOKEN secret is not set. Skipping backend deployment."
 
   deploy-frontend:
     name: Deploy Frontend to Vercel
@@ -128,14 +126,8 @@ jobs:
         env:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
           
-      - name: Check Vercel secrets
-        run: |
-          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
-            echo "VERCEL_TOKEN secret is not set. Skipping deployment."
-            exit 0
-          fi
-          
       - name: Deploy to Vercel
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
         continue-on-error: true
         uses: amondnet/vercel-action@v20
         with:
@@ -145,3 +137,7 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_FRONTEND }}
           working-directory: frontend
           vercel-args: '--prod'
+          
+      - name: Skip deployment message
+        if: ${{ secrets.VERCEL_TOKEN == '' }}
+        run: echo "VERCEL_TOKEN secret is not set. Skipping frontend deployment."

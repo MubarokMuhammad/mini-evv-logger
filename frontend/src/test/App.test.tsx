@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 // Simple test component to verify React and testing setup
 function SimpleTestComponent() {
@@ -7,8 +7,8 @@ function SimpleTestComponent() {
 }
 
 test('renders simple component without crashing', () => {
-  const { getByTestId } = render(<SimpleTestComponent />);
-  expect(getByTestId('simple-component')).toBeInTheDocument();
+  render(<SimpleTestComponent />);
+  expect(screen.getByTestId('simple-component')).toBeInTheDocument();
 });
 
 test('testing library is working correctly', () => {

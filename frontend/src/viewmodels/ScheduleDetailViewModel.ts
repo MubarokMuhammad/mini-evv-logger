@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { fetchSchedules, startVisit, endVisit } from '../store/slices/scheduleSlice';
+import { startVisit, endVisit } from '../store/slices/scheduleSlice';
 import { addNotification } from '../store/slices/uiSlice';
 import { Schedule, Task } from '../models/Schedule';
 import { ScheduleService } from '../services/ScheduleService';

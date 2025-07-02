@@ -2,8 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchSchedules, startVisit, endVisit } from '../store/slices/scheduleSlice';
 import { fetchStats } from '../store/slices/statsSlice';
-import { setTimer, addNotification } from '../store/slices/uiSlice';
-import { Schedule } from '../models/Schedule';
+import { setTimer } from '../store/slices/uiSlice';
 
 declare global {
   namespace NodeJS {
@@ -21,9 +20,43 @@ export const useHomeViewModel = () => {
   
   const [timerInterval, setTimerInterval] = useState<TimerHandle | null>(null);
 
+  const loadData = useCallback(async () => {
+    await Promise.all([
+      dispatch(fetchSchedules()),
+      dispatch(fetchStats())
+    ]);
+  }, [dispatch]);
+
+  const startTimer = useCallback(() => {
+    if (activeVisit?.startTime) {
+      const interval = setInterval(() => {
+        const startTime = new Date(activeVisit.startTime).getTime();
+        const currentTime = new Date().getTime();
+        const elapsed = Math.floor((currentTime - startTime) / 1000);
+        
+        const hours = Math.floor(elapsed / 3600);
+        const minutes = Math.floor((elapsed % 3600) / 60);
+        const seconds = elapsed % 60;
+        
+        const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        dispatch(setTimer(timeString));
+      }, 1000);
+      
+      setTimerInterval(interval);
+    }
+  }, [activeVisit, dispatch]);
+
+  const stopTimer = useCallback(() => {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      setTimerInterval(null);
+      dispatch(setTimer('00:00:00'));
+    }
+  }, [timerInterval, dispatch]);
+
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   useEffect(() => {
     if (activeVisit && !timerInterval) {
@@ -31,14 +64,7 @@ export const useHomeViewModel = () => {
     } else if (!activeVisit && timerInterval) {
       stopTimer();
     }
-  }, [activeVisit]);
-
-  const loadData = async () => {
-    await Promise.all([
-      dispatch(fetchSchedules()),
-      dispatch(fetchStats())
-    ]);
-  };
+  }, [activeVisit, timerInterval, startTimer, stopTimer]);
 
   const getTodaySchedules = () => {
     // Format: "Wed, 2 Jul 2025" (matching backend format exactly)
@@ -70,33 +96,6 @@ export const useHomeViewModel = () => {
     } catch (error) {
       console.error('Failed to clock out:', error);
       return false;
-    }
-  };
-
-  const startTimer = () => {
-    if (activeVisit?.startTime) {
-      const interval = setInterval(() => {
-        const startTime = new Date(activeVisit.startTime).getTime();
-        const currentTime = new Date().getTime();
-        const elapsed = Math.floor((currentTime - startTime) / 1000);
-        
-        const hours = Math.floor(elapsed / 3600);
-        const minutes = Math.floor((elapsed % 3600) / 60);
-        const seconds = elapsed % 60;
-        
-        const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        dispatch(setTimer(timeString));
-      }, 1000);
-      
-      setTimerInterval(interval);
-    }
-  };
-
-  const stopTimer = () => {
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      setTimerInterval(null);
-      dispatch(setTimer('00:00:00'));
     }
   };
 
