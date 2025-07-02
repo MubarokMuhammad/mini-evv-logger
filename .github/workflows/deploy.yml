@@ -84,7 +84,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Deploy to Vercel
-        if: secrets.VERCEL_TOKEN != ''
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
         continue-on-error: true
         uses: amondnet/vercel-action@v20
         with:
@@ -96,7 +96,7 @@ jobs:
           vercel-args: '--prod'
           
       - name: Skip deployment message
-        if: secrets.VERCEL_TOKEN == ''
+        if: ${{ secrets.VERCEL_TOKEN == '' }}
         run: echo "VERCEL_TOKEN secret is not set. Skipping backend deployment."
 
   deploy-frontend:
@@ -127,7 +127,7 @@ jobs:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
           
       - name: Deploy to Vercel
-        if: secrets.VERCEL_TOKEN != ''
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
         continue-on-error: true
         uses: amondnet/vercel-action@v20
         with:
@@ -139,5 +139,5 @@ jobs:
           vercel-args: '--prod'
           
       - name: Skip deployment message
-        if: secrets.VERCEL_TOKEN == ''
+        if: ${{ secrets.VERCEL_TOKEN == '' }}
         run: echo "VERCEL_TOKEN secret is not set. Skipping frontend deployment."
