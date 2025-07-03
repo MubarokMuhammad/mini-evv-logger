@@ -79,16 +79,17 @@ jobs:
     name: Deploy Backend to Vercel
     needs: [test-backend]
     runs-on: ubuntu-latest
-    environment: production
+    environment: VERCEL_TOKEN
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Deploy to Vercel
         continue-on-error: true
-        uses: vercel/action-deploy@v1
+        uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_BACKEND }}
           working-directory: backend
@@ -106,10 +107,10 @@ jobs:
     name: Deploy Frontend to Vercel
     needs: [test-frontend, deploy-backend]
     runs-on: ubuntu-latest
-    environment: production
+    environment: VERCEL_TOKEN
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -132,9 +133,10 @@ jobs:
           
       - name: Deploy to Vercel
         continue-on-error: true
-        uses: vercel/action-deploy@v1
+        uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_FRONTEND }}
           working-directory: frontend
